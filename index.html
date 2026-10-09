@@ -305,25 +305,7 @@ p,h2,h3{text-wrap:balance}
 .art>svg.fx{display:none;position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 .art.has-img>svg.fx{display:block}
 .couple{display:block;width:80%;height:auto;margin:-10px auto 16px}
-  .animated-couple {
-  display: block;
-  width: 85%;
-  max-width: 350px;
-  height: auto;
-  margin: 0 auto 20px;
-  transform-origin: center bottom;
-  animation: coupleFloat 4s ease-in-out infinite;
-}
-
-@keyframes coupleFloat {
-  0%, 100% {
-    transform: translateY(0) rotate(-1deg);
-  }
-
-  50% {
-    transform: translateY(-12px) rotate(1deg);
-  }
-}
+ 
 
 /* Accessibility */
 @media (prefers-reduced-motion: reduce) {
@@ -480,13 +462,14 @@ p,h2,h3{text-wrap:balance}
 
     <div class="invite-card">
       <h1 class="sr" id="inviteTitle">Wedding invitation of Saurabh and Neha</h1>
-     <img
-  class="couple animated-couple"
-  src="assets/ChatGPT%20Image%20Oct%2010%2C%202026%2C%2012_04_05%20AM.png"
-  alt="Animated caricature of Saurabh and Neha"
-  loading="lazy"
-  decoding="async"
->
+    <img class="couple"
+     data-art="assets/img/couple.png"
+     alt="Illustration of Saurabh and Neha"
+     width="800"
+     height="900"
+     loading="lazy"
+     decoding="async"
+     onerror="this.remove()">
       <p class="invite-line reveal">With the blessings of our elders, we joyfully invite you to celebrate the wedding of</p>
       <p class="name reveal" style="--d:1">Saurabh</p>
       <p class="parents reveal" style="--d:2">s/o Mrs. Koshal Somani &amp; Mr. Bhagwan Das Somani</p>
