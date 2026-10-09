@@ -305,6 +305,43 @@ p,h2,h3{text-wrap:balance}
 .art>svg.fx{display:none;position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 .art.has-img>svg.fx{display:block}
 .couple{display:block;width:80%;height:auto;margin:-10px auto 16px}
+/* ===== Carnival and Baraat foreground ===== */
+
+.ev-art {
+  position: relative;
+}
+
+/* Shared foreground positioning */
+.event-couple {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+
+  width: 55%;
+  height: 90%;
+
+  object-fit: contain;
+  object-position: center bottom;
+
+  z-index: 10;
+  transform: translateX(-50%);
+
+  pointer-events: none;
+  animation: none;
+}
+
+/* Carnival couple */
+.carnival-couple {
+  width: 60%;
+  height: 90%;
+}
+
+/* Baraat couple */
+.baraat-couple {
+  width: 65%;
+  height: 95%;
+}
+  
   /* Sangeet couple overlay */
 .ev-sangeet .ev-art {
   position: relative;
@@ -626,7 +663,15 @@ p,h2,h3{text-wrap:balance}
           </g>
         </svg>
         <svg class="fx" viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g fill="#FFD54A"><use href="#spk" class="spark" x="40" y="220" width="10" height="10" style="animation-delay:0s"/><use href="#spk" class="spark" x="90" y="200" width="8" height="8" style="animation-delay:1.2s"/><use href="#spk" class="spark" x="140" y="232" width="7" height="7" style="animation-delay:2.4s"/><use href="#spk" class="spark" x="200" y="212" width="10" height="10" style="animation-delay:0.6s"/><use href="#spk" class="spark" x="262" y="226" width="8" height="8" style="animation-delay:1.9s"/><use href="#spk" class="spark" x="320" y="206" width="10" height="10" style="animation-delay:3s"/><use href="#spk" class="spark" x="362" y="232" width="7" height="7" style="animation-delay:1.5s"/><use href="#spk" class="spark" x="180" y="160" width="8" height="8" style="animation-delay:0.9s"/><use href="#spk" class="spark" x="300" y="150" width="7" height="7" style="animation-delay:2.7s"/><use href="#spk" class="spark" x="60" y="150" width="8" height="8" style="animation-delay:3.4s"/></g></svg>
+      <!-- Carnival foreground caricature -->
+        <img
+          class="event-couple carnival-couple"
+          src="assets/carnival.webp"
+          alt="Saurabh and Neha at Carnival"
+          loading="lazy"
+        >
       </div>
+
       <div class="ev-body">
         <p class="ev-k">Carnival</p>
         <h3>The Grand Jashn</h3>
@@ -840,6 +885,15 @@ p,h2,h3{text-wrap:balance}
         </svg>
         <svg class="fx" viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g fill="#C2185B"><ellipse class="petal" cx="30" cy="0" rx="3" ry="5" fill="#C2185B" style="animation-delay:0s"/><ellipse class="petal" cx="90" cy="0" rx="3" ry="5" fill="#E53950" style="animation-delay:1.4s"/><ellipse class="petal" cx="150" cy="0" rx="3" ry="5" fill="#F28C12" style="animation-delay:3.1s"/><ellipse class="petal" cx="210" cy="0" rx="3" ry="5" fill="#C2185B" style="animation-delay:0.6s"/><ellipse class="petal" cx="270" cy="0" rx="3" ry="5" fill="#E53950" style="animation-delay:4.3s"/><ellipse class="petal" cx="330" cy="0" rx="3" ry="5" fill="#F28C12" style="animation-delay:2.2s"/><ellipse class="petal" cx="380" cy="0" rx="3" ry="5" fill="#C2185B" style="animation-delay:5.2s"/><ellipse class="petal" cx="120" cy="0" rx="3" ry="5" fill="#E53950" style="animation-delay:6s"/><ellipse class="petal" cx="250" cy="0" rx="3" ry="5" fill="#C2185B" style="animation-delay:7s"/></g></svg>
       </div>
+      <!-- Baraat foreground caricature -->
+        <img
+          class="event-couple baraat-couple"
+          src="assets/baraat.webp"
+          alt="Saurabh and Neha at Baraat"
+          loading="lazy"
+        >
+      </div>
+
       <div class="ev-body">
         <p class="ev-k">Baraat · Varmala</p>
         <h3>Band Baaja Baarat</h3>
