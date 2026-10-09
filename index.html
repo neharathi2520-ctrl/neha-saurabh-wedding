@@ -459,6 +459,15 @@ p,h2,h3{text-wrap:balance}
   background: #F7F1E5;
   padding: 22px 22px 26px;
 }
+  /* RSVP wedding header */
+.rsvp-header {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px 10px 0 0;
+  margin: 0;
+  object-fit: contain;
+}
 </style>
 <noscript><style>.gate{display:none}.fab{display:none}</style></noscript>
 </head>
@@ -1139,9 +1148,27 @@ p,h2,h3{text-wrap:balance}
     <h2 class="h2" id="rsvpTitle">RSVP</h2>
     <svg class="divider" aria-hidden="true"><use href="#lotusDiv"/></svg>
 
+    
     <div class="gform">
-      <iframe id="gform" title="RSVP form" data-src="https://docs.google.com/forms/d/e/1FAIpQLSdkwmuw4QXGg8_RIn3s06GeAL9QSHJND814V3LlDUoR7wLajA/viewform?embedded=true" loading="lazy">Loading…</iframe>
-    </div>
+
+  <!-- Wedding RSVP Header -->
+  <img
+    src="assets/Warm Moments Together.png"
+    alt="Saurabh and Neha Wedding RSVP"
+    class="rsvp-header"
+    loading="lazy"
+  >
+
+  <!-- Existing Google Form -->
+  <iframe
+    id="gform"
+    title="RSVP form"
+    data-src="https://docs.google.com/forms/d/e/1FAIpQLSdkwmuw4QXGg8_RIn3s06GeAL9QSHJND814V3LlDUoR7wLajA/viewform?embedded=true"
+    loading="lazy">
+    Loading…
+  </iframe>
+
+</div>
     <p class="or">or</p>
     <div class="center">
     <a class="btn wa" id="waBtn" href="#" target="_blank" rel="noopener">
