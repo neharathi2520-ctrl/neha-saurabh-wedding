@@ -393,6 +393,48 @@ p,h2,h3{text-wrap:balance}
   .gate{transition:opacity .6s ease,visibility 0s .6s}
   .skyline svg{transform:none!important}
 }
+
+  /* ===== PHERE / SAAT VACHAN LAYOUT FIX ===== */
+
+.ev-phere {
+  overflow: hidden;
+}
+
+/* Keep the backdrop at its original size */
+.ev-phere .ev-art {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 400 / 260;
+}
+
+/* Keep the original backdrop and effects */
+.ev-phere .ev-art > .fallback {
+  width: 100%;
+  height: 100%;
+}
+
+/* If a Phere caricature is added later */
+.ev-phere .phere-couple {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 55%;
+  height: 90%;
+  object-fit: contain;
+  object-position: center bottom;
+  transform: translateX(-50%);
+  z-index: 10;
+  pointer-events: none;
+  animation: none;
+}
+
+/* Keep the title and timing in their own section */
+.ev-phere .ev-body {
+  position: relative;
+  z-index: 11;
+  background: #F7F1E5;
+  padding: 22px 22px 26px;
+}
 </style>
 <noscript><style>.gate{display:none}.fab{display:none}</style></noscript>
 </head>
@@ -884,14 +926,12 @@ p,h2,h3{text-wrap:balance}
           </g>
         </svg>
         <svg class="fx" viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g fill="#C2185B"><ellipse class="petal" cx="30" cy="0" rx="3" ry="5" fill="#C2185B" style="animation-delay:0s"/><ellipse class="petal" cx="90" cy="0" rx="3" ry="5" fill="#E53950" style="animation-delay:1.4s"/><ellipse class="petal" cx="150" cy="0" rx="3" ry="5" fill="#F28C12" style="animation-delay:3.1s"/><ellipse class="petal" cx="210" cy="0" rx="3" ry="5" fill="#C2185B" style="animation-delay:0.6s"/><ellipse class="petal" cx="270" cy="0" rx="3" ry="5" fill="#E53950" style="animation-delay:4.3s"/><ellipse class="petal" cx="330" cy="0" rx="3" ry="5" fill="#F28C12" style="animation-delay:2.2s"/><ellipse class="petal" cx="380" cy="0" rx="3" ry="5" fill="#C2185B" style="animation-delay:5.2s"/><ellipse class="petal" cx="120" cy="0" rx="3" ry="5" fill="#E53950" style="animation-delay:6s"/><ellipse class="petal" cx="250" cy="0" rx="3" ry="5" fill="#C2185B" style="animation-delay:7s"/></g></svg>
-      </div>
-      <!-- Baraat foreground caricature -->
-        <img
+           <img
           class="event-couple baraat-couple"
           src="assets/baraat.webp"
           alt="Saurabh and Neha at Baraat"
           loading="lazy"
-        >
+      >
       </div>
 
       <div class="ev-body">
@@ -905,7 +945,7 @@ p,h2,h3{text-wrap:balance}
     </article>
 
     <!-- Phere -->
-    <article class="ev ev-gala reveal">
+    <article class="ev ev-gala ev-phere reveal">
       <div class="ev-art scene art">
         <img class="art-img" data-art="assets/img/reception.webp" alt="White marble arches with candle stands, white roses and a reflecting pool of floating candles" decoding="async" loading="lazy" onload="this.parentNode.classList.add('has-img')" onerror="this.remove()">
         <svg class="fallback" viewBox="0 0 400 260" role="img" aria-label="Illustration: white marble arches with candle stands, white roses and a reflecting pool of floating candles">
