@@ -305,6 +305,45 @@ p,h2,h3{text-wrap:balance}
 .art>svg.fx{display:none;position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 .art.has-img>svg.fx{display:block}
 .couple{display:block;width:80%;height:auto;margin:-10px auto 16px}
+  /* Sangeet couple overlay */
+.ev-sangeet .ev-art {
+  position: relative;
+  overflow: hidden;
+}
+
+.ev-sangeet .sangeet-couple {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 55%;
+  height: 90%;
+  object-fit: contain;
+  object-position: center bottom;
+  z-index: 10;
+  transform-origin: center bottom;
+  animation: sangeetDance 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes sangeetDance {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0) rotate(-1deg);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-7px) rotate(1deg);
+  }
+}
+
+.ev-sangeet .scene:not(.live) .sangeet-couple {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ev-sangeet .sangeet-couple {
+    animation: none;
+    transform: translateX(-50%);
+  }
+}
  
 
 /* Accessibility */
@@ -669,6 +708,12 @@ p,h2,h3{text-wrap:balance}
         </svg>
         <svg class="fx" viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g fill="none" stroke-linecap="round"><path d="M0 14q100 52 200 12t200 12" stroke="#FFE3A3" stroke-width="5" stroke-dasharray=".1 16" class="tw1"/><path d="M0 14q100 52 200 12t200 12" stroke="#FFD0DA" stroke-width="5" stroke-dasharray=".1 16" stroke-dashoffset="8" class="tw2"/></g>
           <circle class="bokeh" cx="60" cy="120" r="16" fill="url(#pinkBokeh)"/><circle class="bokeh" cx="330" cy="130" r="20" fill="url(#goldBokeh)" style="animation-delay:-3s"/><circle class="bokeh" cx="150" cy="110" r="10" fill="url(#goldBokeh)" style="animation-delay:-5s"/><circle class="bokeh" cx="270" cy="70" r="12" fill="url(#pinkBokeh)" style="animation-delay:-1.5s"/><circle class="bokeh" cx="370" cy="200" r="9" fill="url(#pinkBokeh)" style="animation-delay:-6s"/><circle class="bokeh" cx="24" cy="190" r="11" fill="url(#goldBokeh)" style="animation-delay:-4s"/></svg>
+       <img
+          class="sangeet-couple"
+          src="assets/sangeet-transp.webp"
+          alt="Saurabh and Neha"
+          loading="lazy"
+        >
       </div>
       <div class="ev-body">
         <p class="ev-k">Sangeet</p>
