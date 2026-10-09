@@ -340,6 +340,26 @@ p,h2,h3{text-wrap:balance}
 .baraat-couple {
   width: 65%;
   height: 95%;
+  
+}
+  /* ===== Maayra foreground caricature ===== */
+
+.maayra-couple {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+
+  width: 60%;
+  height: 90%;
+
+  object-fit: contain;
+  object-position: center bottom;
+
+  z-index: 10;
+  transform: translateX(-50%);
+
+  pointer-events: none;
+  animation: none;
 }
   
   /* Sangeet couple overlay */
@@ -863,6 +883,15 @@ p,h2,h3{text-wrap:balance}
         </svg>
         <svg class="fx" viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g fill="#FFD54A"><use href="#spk" class="spark" x="40" y="220" width="10" height="10" style="animation-delay:0s"/><use href="#spk" class="spark" x="90" y="200" width="8" height="8" style="animation-delay:1.2s"/><use href="#spk" class="spark" x="140" y="232" width="7" height="7" style="animation-delay:2.4s"/><use href="#spk" class="spark" x="200" y="212" width="10" height="10" style="animation-delay:0.6s"/><use href="#spk" class="spark" x="262" y="226" width="8" height="8" style="animation-delay:1.9s"/><use href="#spk" class="spark" x="320" y="206" width="10" height="10" style="animation-delay:3s"/><use href="#spk" class="spark" x="362" y="232" width="7" height="7" style="animation-delay:1.5s"/><use href="#spk" class="spark" x="180" y="160" width="8" height="8" style="animation-delay:0.9s"/><use href="#spk" class="spark" x="300" y="150" width="7" height="7" style="animation-delay:2.7s"/><use href="#spk" class="spark" x="60" y="150" width="8" height="8" style="animation-delay:3.4s"/></g></svg>
       </div>
+              <!-- Maayra foreground caricature -->
+        <img
+          class="event-couple maayra-couple"
+          src="assets/maayra.webp"
+          alt="Maayra - Bhaat ki Reet"
+          loading="lazy"
+        >
+      </div>
+
       <div class="ev-body">
         <p class="ev-k">Maayra</p>
         <h3>Bhaat ki Reet</h3>
