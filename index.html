@@ -311,6 +311,11 @@ p,h2,h3{text-wrap:balance}
   overflow: hidden;
 }
 
+.ev-sangeet .ev-art {
+  position: relative;
+  overflow: hidden;
+}
+
 .ev-sangeet .sangeet-couple {
   position: absolute;
   bottom: 0;
@@ -320,23 +325,12 @@ p,h2,h3{text-wrap:balance}
   object-fit: contain;
   object-position: center bottom;
   z-index: 10;
-  transform-origin: center bottom;
-  animation: sangeetDance 3s ease-in-out infinite;
+  transform: translateX(-50%);
   pointer-events: none;
+  animation: none;
 }
 
-@keyframes sangeetDance {
-  0%, 100% {
-    transform: translateX(-50%) translateY(0) rotate(-1deg);
-  }
-  50% {
-    transform: translateX(-50%) translateY(-7px) rotate(1deg);
-  }
-}
 
-.ev-sangeet .scene:not(.live) .sangeet-couple {
-  animation-play-state: paused;
-}
 
 @media (prefers-reduced-motion: reduce) {
   .ev-sangeet .sangeet-couple {
