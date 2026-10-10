@@ -256,8 +256,33 @@ p,h2,h3{text-wrap:balance}
 
 /* ---------- 5. rsvp (embedded Google Form) ---------- */
 .gform{margin:6px -10px 0;padding:6px;border-radius:14px;background:#fff;box-shadow:0 0 0 1px var(--gold),0 10px 26px rgba(74,20,32,.12)}
-.gform iframe{display:block;width:100%;height:1640px;border:0;border-radius:10px;background:#fff;transition:height .4s ease}
-.gform.sent iframe{height:460px}
+.gform-cta{padding:22px 14px 18px;text-align:center}
+.gform-cta p{margin:0 0 16px;color:var(--muted)}
+.gform-cta .btn{width:100%}
+.rform{padding:20px 14px 18px}
+.rf-intro{margin:0 0 18px;text-align:center;color:var(--muted)}
+.rf-field{display:block;margin:0 0 18px;padding:0;border:0;min-width:0}
+.rf-label{display:block;margin:0 0 6px;padding:0;font:600 1.05rem/1.3 var(--serif);color:var(--maroon)}
+.rf-label b{color:#B3261E;font-weight:600}
+.rform input:not([type=radio]):not([type=checkbox]),.rform select{
+  display:block;width:100%;min-height:46px;padding:10px 12px;border:1px solid rgba(184,137,59,.6);border-radius:8px;
+  background:#FFFDF8;color:var(--ink);font:16px/1.3 var(--body);-webkit-appearance:none;appearance:none}
+.rform select{background-image:linear-gradient(45deg,transparent 50%,var(--gold) 50%),linear-gradient(135deg,var(--gold) 50%,transparent 50%);
+  background-position:calc(100% - 18px) 50%,calc(100% - 13px) 50%;background-size:5px 5px;background-repeat:no-repeat;padding-right:34px}
+.rform input:focus,.rform select:focus{outline:2px solid #C77D1A;outline-offset:1px;border-color:transparent}
+.rf-opt{display:flex;align-items:center;gap:10px;min-height:40px;font-size:1rem;cursor:pointer}
+.rf-opt input{width:20px;height:20px;margin:0;flex:none;accent-color:var(--maroon)}
+.rf-field.bad .rf-label,.rf-field.bad .rf-label b{color:#B3261E}
+.rf-field.bad input:not([type=radio]):not([type=checkbox]){border-color:#B3261E}
+.rf-hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.rf-msg{margin:0 0 12px;text-align:center;color:#B3261E;font-size:.95rem}
+.rf-msg:empty{display:none}
+.rf-msg a{color:inherit}
+.rform .btn{width:100%}
+.rform .btn[disabled]{opacity:.7;cursor:progress}
+.rform-done{padding:34px 14px 30px;text-align:center;outline:0}
+.rform-done .big{margin:0 0 6px;font:400 2.4rem/1.2 var(--script);color:var(--maroon)}
+.rform-done p{margin:0;color:var(--muted)}
 .or{text-align:center;color:var(--muted);font-style:italic;margin:22px 0 12px}
 .rsvp .btn.wa{width:100%}
 
@@ -1159,14 +1184,77 @@ p,h2,h3{text-wrap:balance}
     loading="lazy"
   >
 
-  <!-- Existing Google Form -->
-  <iframe
-    id="gform"
-    title="RSVP form"
-    data-src="https://docs.google.com/forms/d/e/1FAIpQLSfCCgjwDrOo6gjCu6t61z_MPLPfcs0b1SPILo2lDofWLRMc8w/viewform?embedded=true"
-    loading="lazy">
-    Loading…
-  </iframe>
+  <!-- Our own form, not a Google iframe: mobile browsers block Google's cookies inside iframes -->
+  <form class="rform" id="rsvpForm" hidden novalidate>
+    <p class="rf-intro">Please let us know if you'll be joining our celebrations!</p>
+
+    <label class="rf-field">
+      <span class="rf-label">Name <b aria-hidden="true">*</b></span>
+      <input name="name" autocomplete="name" required maxlength="120">
+    </label>
+
+    <fieldset class="rf-field" data-required>
+      <legend class="rf-label">Can you attend? <b aria-hidden="true">*</b></legend>
+      <label class="rf-opt"><input type="radio" name="attending" value="Yes, I'll be there" required> Yes, I'll be there</label>
+      <label class="rf-opt"><input type="radio" name="attending" value="Sorry, can't make it"> Sorry, can't make it</label>
+    </fieldset>
+
+    <fieldset class="rf-field" data-required>
+      <legend class="rf-label">Which side are you joining us from? <b aria-hidden="true">*</b></legend>
+      <label class="rf-opt"><input type="radio" name="side" value="Bride’s Side" required> Bride’s Side</label>
+      <label class="rf-opt"><input type="radio" name="side" value="Groom’s Side"> Groom’s Side</label>
+      <label class="rf-opt"><input type="radio" name="side" value="Both Sides"> Both Sides</label>
+    </fieldset>
+
+    <label class="rf-field">
+      <span class="rf-label">Phone</span>
+      <input name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="30">
+    </label>
+
+    <div class="rf-coming">
+      <label class="rf-field">
+        <span class="rf-label">Number of guests</span>
+        <select name="guests">
+          <option value="">Choose</option>
+          <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+          <option>6</option><option>7</option><option>8</option><option>9</option>
+        </select>
+      </label>
+
+      <fieldset class="rf-field">
+        <legend class="rf-label">Events attending</legend>
+        <label class="rf-opt"><input type="checkbox" name="events" value="Haldi"> Haldi</label>
+        <label class="rf-opt"><input type="checkbox" name="events" value="Sangeet"> Sangeet</label>
+        <label class="rf-opt"><input type="checkbox" name="events" value="Baraat, Varmala & Phere"> Baraat, Varmala &amp; Phere</label>
+        <label class="rf-opt"><input type="checkbox" name="events" value="Reception"> Reception</label>
+      </fieldset>
+
+      <label class="rf-field">
+        <span class="rf-label">Arrival date &amp; time <b aria-hidden="true">*</b></span>
+        <input name="arrival" placeholder="e.g. 10 Dec, around 9 AM" maxlength="120" required>
+      </label>
+    </div>
+
+    <input class="rf-hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+    <p class="rf-msg" id="rfMsg" role="alert"></p>
+    <button class="btn" type="submit">Send RSVP</button>
+  </form>
+
+  <div class="rform-done" id="rsvpDone" hidden tabindex="-1">
+    <p class="big">Thank you!</p>
+    <p>We can't wait to celebrate with you in Bundi.</p>
+  </div>
+
+  <!-- Shown until RSVP_ENDPOINT is set, and as a fallback if sending fails -->
+  <div class="gform-cta" id="gformCta">
+    <p>Please let us know if you'll be joining our celebrations!</p>
+    <a class="btn" id="gformBtn"
+       href="https://docs.google.com/forms/d/e/1FAIpQLSfCCgjwDrOo6gjCu6t61z_MPLPfcs0b1SPILo2lDofWLRMc8w/viewform"
+       target="_blank" rel="noopener">
+      <span>RSVP Now</span>
+    </a>
+  </div>
 
 </div>
     <p class="or">or</p>
@@ -1189,8 +1277,9 @@ p,h2,h3{text-wrap:balance}
 (() => {
   /* ======================= CONFIG — edit these ======================= */
   const CONFIG = {
-    // RSVPs: the Google Form is embedded on the page. Responses land in the Sheet.
-    //   Responses land in the Google Sheet linked to the form (open the form editor → Responses → Link to Sheets).
+    // RSVPs: paste the Apps Script web app URL (…/exec) from tools/rsvp-endpoint.gs to show the on-page form.
+    //   Answers land in the "Website RSVPs" tab of the responses Sheet. Left empty, an "RSVP Now" button opens the Google Form.
+    RSVP_ENDPOINT: 'https://script.google.com/macros/s/AKfycbycVb2VddHmLSn10tfkNDwOf5wyB7PGzD6CE8t9UpkLogrSYo9NoLyTRcSuM_1PWLEW/exec',
     WHATSAPP_NUMBER: '',     // [PLACEHOLDER NUMBER] digits only with country code, e.g. '919876543210'
     MUSIC_SRC: 'assets/music.mp3', // royalty-free shehnai/santoor track; a gentle built-in santoor tune plays if missing
     WEDDING_START: '2026-12-10T11:00:00+05:30',
@@ -1393,25 +1482,67 @@ p,h2,h3{text-wrap:balance}
     }
   });
 
-  /* ---------- RSVP: embedded Google Form ---------- */
-  // Loaded only when the guest nears the RSVP, so it never slows the invite down.
-  // Google reloads the frame once while opening the form, so only a reload that comes 8 s+ after the form
-  // first appeared counts as a submission (Google shows its "Thank you" page), and that's when we celebrate.
-  const gframe = $('#gform');
-  let shownAt = 0, sent = false;
-  gframe.addEventListener('load', () => {
-    if (!gframe.src || sent) return;
-    const now = Date.now();
-    if (!shownAt) { shownAt = now; return; }
-    if (now - shownAt < 8000) return;
-    sent = true;
-    gframe.parentNode.classList.add('sent');
-    gframe.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
-    burst(60, 'gold');
+  /* ---------- RSVP: on-page form, sent to the Apps Script; Google Form link as fallback ---------- */
+  $('#gformBtn').addEventListener('click', () => burst(40, 'gold'));
+  const rform = $('#rsvpForm'), rmsg = $('#rfMsg'), gformUrl = $('#gformBtn').href;
+  if (CONFIG.RSVP_ENDPOINT) {
+    rform.hidden = false;
+    $('#gformCta').hidden = true;
+  }
+  const coming = $('.rf-coming', rform);
+  const syncComing = () => {
+    const no = rform.elements.attending.value === "Sorry, can't make it";
+    coming.hidden = no;
+    rform.elements.arrival.required = !no;
+  };
+  rform.addEventListener('change', e => {
+    if (e.target.name === 'attending') syncComing();
+    e.target.closest('.rf-field')?.classList.remove('bad');
   });
-  new IntersectionObserver((es, o) => {
-    if (es[0].isIntersecting) { gframe.src = gframe.dataset.src; o.disconnect(); }
-  }, { rootMargin: '800px' }).observe(gframe);
+  rform.addEventListener('input', e => e.target.closest('.rf-field')?.classList.remove('bad'));
+
+  rform.addEventListener('submit', async e => {
+    e.preventDefault();
+    const f = rform.elements;
+    rmsg.textContent = '';
+    const missing = [f.name, f.attending[0], f.side[0], f.arrival].filter(el => el.required && !(
+      el.type === 'radio' ? f[el.name].value : el.value.trim()));
+    $$('.rf-field', rform).forEach(el => el.classList.remove('bad'));
+    if (missing.length) {
+      missing.forEach(el => el.closest('.rf-field').classList.add('bad'));
+      rmsg.textContent = 'Please fill in the fields marked *';
+      missing[0].focus();
+      return;
+    }
+    const no = f.attending.value === "Sorry, can't make it";
+    const data = {
+      name: f.name.value, attending: f.attending.value, side: f.side.value, phone: f.phone.value,
+      guests: no ? '' : f.guests.value,
+      events: no ? [] : $$('input[name=events]:checked', rform).map(i => i.value),
+      arrival: no ? '' : f.arrival.value,
+      website: f.website.value
+    };
+    const btn = $('button[type=submit]', rform);
+    btn.disabled = true; btn.textContent = 'Sending…';
+    try {
+      // text/plain keeps this a "simple" request, which Apps Script accepts without a CORS preflight
+      const ctrl = new AbortController();
+      const timer = setTimeout(() => ctrl.abort(), 25000);
+      const res = await fetch(CONFIG.RSVP_ENDPOINT, { method: 'POST', body: JSON.stringify(data), headers: { 'Content-Type': 'text/plain;charset=utf-8' }, signal: ctrl.signal })
+        .finally(() => clearTimeout(timer));
+      const out = await res.json();
+      if (!out.ok) throw new Error(out.error);
+      rform.hidden = true;
+      const done = $('#rsvpDone');
+      done.hidden = false;
+      done.focus({ preventScroll: true });
+      done.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
+      burst(60, 'gold');
+    } catch (err) {
+      btn.disabled = false; btn.textContent = 'Send RSVP';
+      rmsg.innerHTML = `Sorry, that didn't go through. Please try again, or <a href="${gformUrl}" target="_blank" rel="noopener">RSVP on the Google Form</a>.`;
+    }
+  });
 })();
 </script>
 </body>

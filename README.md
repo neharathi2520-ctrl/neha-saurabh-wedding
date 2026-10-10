@@ -15,7 +15,7 @@ Features:
 - Four illustrated event cards, each with its own animation
 - Venue with a lazy-loaded map
 - Night-lake closing section with a share button
-- RSVP through an embedded Google Form
+- RSVP form built into the page, saved to a Google Sheet (no Google cookie or sign-in prompts)
 - A WhatsApp preview image
 
 ---
@@ -29,6 +29,7 @@ Features:
 | `wedding.ics` | Calendar file behind the "Add to Calendar" button |
 | `PROMPT.md` | **The prompt to rebuild this site with Claude**, plus the original prompt |
 | `tools/google-form.gs` | Google Apps Script that creates the RSVP form and its responses Sheet |
+| `tools/rsvp-endpoint.gs` | Google Apps Script web app that receives the on-page RSVP form and adds rows to the Sheet |
 | `tools/build-assets.sh`, `tools/og.html` | Regenerate the WhatsApp preview image and favicons from your logo |
 | `tools/logo-neha-saurabh.html` | The N & S monogram logo (SVG in HTML). Render it with headless Chrome to `assets/logo.png` |
 
@@ -85,8 +86,8 @@ Ask: *"Publish it on GitHub Pages with an appropriate link."* Claude Code uses t
 5. **RSVP form:**
    1. Open [script.google.com](https://script.google.com), click **New project**, and paste in `tools/google-form.gs`.
    2. Edit the event names, then run `createWeddingRsvpForm` and approve the permissions.
-   3. The **Execution log** prints the form's links. In `index.html`, find `viewform?embedded=true` and replace that form URL with yours.
-   4. Responses arrive in the Google Sheet the script creates.
+   3. The **Execution log** prints the form's links. In `index.html`, find `id="gformBtn"` and replace its form URL with yours. This link is the fallback "RSVP Now" button. Keep it a plain `…/viewform` link: embedding the form in an iframe makes mobile browsers show Google's cookie/sign-in error.
+   4. **On-page form:** open the responses Sheet → **Extensions → Apps Script**, paste in `tools/rsvp-endpoint.gs`, set `SHEET_ID` to your Sheet's ID (the long code in its URL), then **Deploy → New deployment → Web app** with *Execute as: Me* and *Who has access: Anyone*. Paste the `/exec` URL into `RSVP_ENDPOINT` in the `CONFIG` block. The form then appears on the page, and its answers land in a **Website RSVPs** tab. If the questions change, update both the form in `index.html` and `COLUMNS` in the script.
 6. **Host it:** enable **GitHub Pages** in the repo settings (branch `main`, root folder), or use any static host.
 
 ---
